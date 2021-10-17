@@ -73,7 +73,7 @@ variable "Instance_Type" {
 # Application Load Balancer Security Group ports
 variable "Load_Security_Group_Ports" {
   type    = list(string)
-  default = ["80", "8080"]
+  default = ["80", "8080", "9090"]
 }
 
 # Instances Security Group ports

@@ -22,7 +22,7 @@ resource "aws_ecs_service" "VPC_ECS_Service_Dev" {
     field = "instanceId"
   }
   load_balancer {
-    target_group_arn = data.terraform_remote_state.Instances_State.outputs.VPC_Dev_Target_Group
+    target_group_arn = aws_lb_target_group.VPC_Dev_Target_Group.arn
     container_name   = "${local.ENV_Tag}-Dev-Container"
     container_port   = local.Dev_App.port
   }

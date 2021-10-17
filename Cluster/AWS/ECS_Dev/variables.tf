@@ -22,7 +22,7 @@ variable "Environment_Tag" {
 
 variable "Dev_Container" {
   type    = string
-  default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-dev:dev"
+  default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-dev:de3e15f36a82b37e3422f2646886ef53f0b297bb"
 }
 
 variable "Dev_Amount" {
