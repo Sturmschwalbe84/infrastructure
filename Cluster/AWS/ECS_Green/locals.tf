@@ -17,16 +17,6 @@ locals {
   }
 }
 
-locals {
-  Green_App = {
-    port   = var.Green_Container_Params.port
-    amount = var.Green_Container_Params.amount
-    cpu    = var.Green_Container_Params.cpu
-    memory = var.Green_Container_Params.memory
-    image  = var.Green_Container
-  }
-}
-
 # Tags for several resources
 locals {
   VPC                      = merge(local.Tags, { Name = "${local.Tags["Environment"]} VPC" })

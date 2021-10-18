@@ -20,6 +20,16 @@ variable "Environment_Tag" {
   }
 }
 
+variable "Blue_App" {
+  type = map(number)
+  default = {
+    port   = 8080
+    amount = 4
+    cpu    = 128
+    memory = 128
+  }
+}
+
 variable "Blue_Container" {
   type    = string
   default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-blue:blau"
@@ -28,16 +38,6 @@ variable "Blue_Container" {
 variable "Enable_Green" {
   type    = bool
   default = false
-}
-
-variable "Blue_Container_Params" {
-  type = map(number)
-  default = {
-    port   = 8080
-    amount = 4
-    cpu    = 128
-    memory = 128
-  }
 }
 
 variable "Autoscaling" {

@@ -25,7 +25,7 @@ variable "Green_Container" {
   default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-green:gruen"
 }
 
-variable "Green_Container_Params" {
+variable "Green_App" {
   type = map(number)
   default = {
     port   = 8080

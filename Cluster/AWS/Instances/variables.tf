@@ -29,14 +29,14 @@ variable "Environment_Tag" {
   }
 }
 
-variable "Blue_Container_Params" {
-  type = map(number)
-  default = {
-    port   = 8080
-    amount = 4
-    cpu    = 128
-    memoru = 128
-  }
+variable "Blue_Port" {
+  type    = number
+  default = 8080
+}
+
+variable "Green_Port" {
+  type    = number
+  default = 8080
 }
 
 variable "Autoscaling" {

@@ -67,24 +67,6 @@ locals {
   }
 }
 
-locals {
-  Blue_App = {
-    port   = 8080
-    amount = 4
-    cpu    = 128
-    memory = 128
-  }
-}
-
-locals {
-  Green_App = {
-    port   = 8080
-    amount = 4
-    cpu    = 128
-    memory = 128
-  }
-}
-
 # Tags for several resources
 locals {
   VPC                      = merge(local.Tags, { Name = "${local.Tags["Environment"]} VPC" })

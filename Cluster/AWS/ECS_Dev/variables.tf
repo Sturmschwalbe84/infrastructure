@@ -25,12 +25,7 @@ variable "Dev_Container" {
   default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-dev:de3e15f36a82b37e3422f2646886ef53f0b297bb"
 }
 
-variable "Dev_Amount" {
-  type    = number
-  default = 2
-}
-
-variable "Dev_Container_Params" {
+variable "Dev_App" {
   type = map(number)
   default = {
     port   = 8080
@@ -38,6 +33,11 @@ variable "Dev_Container_Params" {
     cpu    = 128
     memory = 128
   }
+}
+
+variable "Dev_Amount" {
+  type    = number
+  default = 2
 }
 
 variable "Project_Tag" {

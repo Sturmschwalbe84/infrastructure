@@ -16,7 +16,7 @@ resource "aws_lb" "VPC_Load_Balancer" {
 resource "aws_lb_target_group" "VPC_Blue_Target_Group" {
   name_prefix          = "${var.Environment_Tag}-"
   vpc_id               = data.terraform_remote_state.VPC_State.outputs.Exam_VPC
-  port                 = local.Blue_App.port
+  port                 = var.Blue_Port
   protocol             = "HTTP"
   deregistration_delay = 10
   health_check {
@@ -32,7 +32,7 @@ resource "aws_lb_target_group" "VPC_Blue_Target_Group" {
 resource "aws_lb_target_group" "VPC_Green_Target_Group" {
   name_prefix          = "${var.Environment_Tag}-"
   vpc_id               = data.terraform_remote_state.VPC_State.outputs.Exam_VPC
-  port                 = local.Green_App.port
+  port                 = var.Green_Port
   protocol             = "HTTP"
   deregistration_delay = 10
   health_check {

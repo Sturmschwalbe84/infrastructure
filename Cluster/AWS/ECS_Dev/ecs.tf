@@ -11,7 +11,7 @@ resource "aws_ecs_service" "VPC_ECS_Service_Dev" {
   name            = "${local.ENV_Tag}-Dev"
   cluster         = data.terraform_remote_state.Instances_State.outputs.ECS_Cluster
   task_definition = aws_ecs_task_definition.Task_Dev.arn
-  desired_count   = local.Dev_App.amount
+  desired_count   = var.Dev_App.amount
   launch_type     = "EC2"
   ordered_placement_strategy {
     type  = "spread"
@@ -24,7 +24,7 @@ resource "aws_ecs_service" "VPC_ECS_Service_Dev" {
   load_balancer {
     target_group_arn = aws_lb_target_group.VPC_Dev_Target_Group.arn
     container_name   = "${local.ENV_Tag}-Dev-Container"
-    container_port   = local.Dev_App.port
+    container_port   = var.Dev_App.port
   }
   tags = local.ECS_Service
 }
@@ -34,14 +34,14 @@ resource "aws_ecs_task_definition" "Task_Dev" {
   container_definitions = jsonencode([
     {
       name      = "${local.ENV_Tag}-Dev-Container"
-      image     = local.Dev_App.image
-      cpu       = local.Dev_App.cpu
-      memory    = local.Dev_App.memory
+      image     = var.Dev_Container
+      cpu       = var.Dev_App.cpu
+      memory    = var.Dev_App.memory
       essential = true
       portMappings = [
         {
           protocol      = "tcp"
-          containerPort = local.Dev_App.port
+          containerPort = var.Dev_App.port
           hostPort      = 0
         }
       ]

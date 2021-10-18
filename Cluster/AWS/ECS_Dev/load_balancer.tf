@@ -17,7 +17,7 @@ resource "aws_lb_listener" "VPC_Dev_Load_Balancer_Listener_9090" {
 resource "aws_lb_target_group" "VPC_Dev_Target_Group" {
   name_prefix          = "${var.Environment_Tag}-"
   vpc_id               = data.terraform_remote_state.VPC_State.outputs.Exam_VPC
-  port                 = local.Dev_App.port
+  port                 = var.Dev_App.port
   protocol             = "HTTP"
   deregistration_delay = 10
   health_check {
