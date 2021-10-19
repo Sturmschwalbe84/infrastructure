@@ -4,6 +4,7 @@
 # Cluster autoscaling group
 #===========================================================================================
 
+# ECS Cluster
 resource "aws_ecs_cluster" "ECS_Cluster" {
   name = local.Cluster_Name
 }
@@ -18,6 +19,7 @@ data "aws_ami" "Amazon_Latest" {
   }
 }
 
+# ECS Instances launch configuration
 resource "aws_launch_configuration" "Blue_Launch_Config" {
   image_id             = data.aws_ami.Amazon_Latest.id
   instance_type        = var.Instance_Type
@@ -29,6 +31,7 @@ resource "aws_launch_configuration" "Blue_Launch_Config" {
   }
 }
 
+# ECS Instances auto scaling group
 resource "aws_autoscaling_group" "Autoscaling_group" {
   max_size             = var.Autoscaling.max_size
   min_size             = var.Autoscaling.min_size

@@ -1,16 +1,10 @@
 #===========================================================================================
 # Rainbow Gravity's Inrastructure for exam
 # 
-# VPC Variables
+# Variables
 #===========================================================================================
 
-# Maximum length of the Environment tag is 5, because it used as name prefix for several resources.
-# DON'T delete it.
-variable "Cluster_Name" {
-  type    = string
-  default = "Cluster"
-}
-
+# Tags
 variable "Environment_Tag" {
   type    = string
   default = "Exam"
@@ -19,12 +13,22 @@ variable "Environment_Tag" {
     error_message = "Maximum lenght of the Environment tag is 5, because it used as name prefix for several resources."
   }
 }
+variable "Project_Tag" {
+  type    = string
+  default = "Template Homework"
+}
+variable "Owner_Tag" {
+  type    = string
+  default = "Rainbow Gravity"
+}
 
+# Dev Container repository and tag
 variable "Dev_Container" {
   type    = string
   default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-dev:de3e15f36a82b37e3422f2646886ef53f0b297bb"
 }
 
+# Dev Container params
 variable "Dev_App" {
   type = map(number)
   default = {
@@ -35,19 +39,10 @@ variable "Dev_App" {
   }
 }
 
+# Amount of Dev tasks running
 variable "Dev_Amount" {
   type    = number
   default = 2
-}
-
-variable "Project_Tag" {
-  type    = string
-  default = "Template Homework"
-}
-
-variable "Owner_Tag" {
-  type    = string
-  default = "Rainbow Gravity"
 }
 
 # Region selection

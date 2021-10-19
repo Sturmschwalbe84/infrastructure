@@ -1,16 +1,10 @@
 #===========================================================================================
 # Rainbow Gravity's Inrastructure for exam
 # 
-# VPC Variables
+# Variables
 #===========================================================================================
 
-# Maximum length of the Environment tag is 5, because it used as name prefix for several resources.
-# DON'T delete it.
-variable "Cluster_Name" {
-  type    = string
-  default = "Cluster"
-}
-
+# Tags
 variable "Environment_Tag" {
   type    = string
   default = "Exam"
@@ -19,12 +13,16 @@ variable "Environment_Tag" {
     error_message = "Maximum lenght of the Environment tag is 5, because it used as name prefix for several resources."
   }
 }
-
-variable "Green_Container" {
+variable "Project_Tag" {
   type    = string
-  default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-green:gruen"
+  default = "Template Homework"
+}
+variable "Owner_Tag" {
+  type    = string
+  default = "Rainbow Gravity"
 }
 
+# Green Container params
 variable "Green_App" {
   type = map(number)
   default = {
@@ -35,30 +33,14 @@ variable "Green_App" {
   }
 }
 
-variable "Project_Tag" {
+# Green Container repository and tag
+variable "Green_Container" {
   type    = string
-  default = "Template Homework"
-}
-
-variable "Owner_Tag" {
-  type    = string
-  default = "Rainbow Gravity"
+  default = "068379437484.dkr.ecr.eu-central-1.amazonaws.com/python-app-green:gruen"
 }
 
 # Region selection
 variable "Region" {
   type    = string
   default = "eu-central-1"
-}
-
-# ALB Health Check parameters
-variable "Health_Check" {
-  type = map(number)
-  default = {
-    healthy_threshold   = 3
-    unhealthy_threshold = 2
-    timeout             = 2
-    interval            = 5
-    matcher             = 200
-  }
 }

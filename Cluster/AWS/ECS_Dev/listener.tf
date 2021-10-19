@@ -1,9 +1,10 @@
 #===========================================================================================
 # Rainbow Gravity's Inrastructure for exam
 #
-# Dev Listeners and Target Groups
+# Dev Listener and Target Group
 #===========================================================================================
 
+# Listener for Dev ECS service
 resource "aws_lb_listener" "VPC_Dev_Load_Balancer_Listener_9090" {
   load_balancer_arn = data.terraform_remote_state.Instances_State.outputs.VPC_Load_Balancer
   port              = 9090
@@ -14,6 +15,7 @@ resource "aws_lb_listener" "VPC_Dev_Load_Balancer_Listener_9090" {
   }
 }
 
+# Target group for Dev ECS service
 resource "aws_lb_target_group" "VPC_Dev_Target_Group" {
   name_prefix          = "${var.Environment_Tag}-"
   vpc_id               = data.terraform_remote_state.VPC_State.outputs.Exam_VPC

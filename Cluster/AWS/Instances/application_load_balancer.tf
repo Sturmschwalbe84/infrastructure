@@ -4,6 +4,7 @@
 # Application Load Balancer, Listeners and Target Groups
 #===========================================================================================
 
+# VPC Load balancer
 resource "aws_lb" "VPC_Load_Balancer" {
   name_prefix        = "${var.Environment_Tag}-"
   internal           = false
@@ -13,10 +14,11 @@ resource "aws_lb" "VPC_Load_Balancer" {
   tags               = local.ALB_Tags
 }
 
+# Blue target group
 resource "aws_lb_target_group" "VPC_Blue_Target_Group" {
   name_prefix          = "${var.Environment_Tag}-"
   vpc_id               = data.terraform_remote_state.VPC_State.outputs.Exam_VPC
-  port                 = var.Blue_Port
+  port                 = 80
   protocol             = "HTTP"
   deregistration_delay = 10
   health_check {
@@ -29,10 +31,11 @@ resource "aws_lb_target_group" "VPC_Blue_Target_Group" {
   }
 }
 
+# Green target group
 resource "aws_lb_target_group" "VPC_Green_Target_Group" {
   name_prefix          = "${var.Environment_Tag}-"
   vpc_id               = data.terraform_remote_state.VPC_State.outputs.Exam_VPC
-  port                 = var.Green_Port
+  port                 = 80
   protocol             = "HTTP"
   deregistration_delay = 10
   health_check {
@@ -45,6 +48,7 @@ resource "aws_lb_target_group" "VPC_Green_Target_Group" {
   }
 }
 
+# Listener for Blue ECS service
 resource "aws_lb_listener" "VPC_Blue_Load_Balancer_Listener_80" {
   load_balancer_arn = aws_lb.VPC_Load_Balancer.arn
   port              = 80

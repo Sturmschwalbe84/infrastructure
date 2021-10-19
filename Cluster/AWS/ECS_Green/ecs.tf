@@ -4,9 +4,7 @@
 # Elsatic Compute Service resources
 #======================================================================
 
-# sed -i 's/ignore_changes = \[\]/ignore_changes = []/' ecs.tf
-# sed -i "s/ignore_changes = []/ignore_changes = []/" ecs.tf
-
+# ECS Service
 resource "aws_ecs_service" "VPC_ECS_Service_Green" {
   name            = "${local.ENV_Tag}-Green"
   cluster         = data.terraform_remote_state.Instances_State.outputs.ECS_Cluster
@@ -29,6 +27,7 @@ resource "aws_ecs_service" "VPC_ECS_Service_Green" {
   tags = local.ECS_Service
 }
 
+# ECS Task
 resource "aws_ecs_task_definition" "Task_Green" {
   family = "${local.ENV_Tag}-Green-APP"
   container_definitions = jsonencode([
@@ -51,7 +50,5 @@ resource "aws_ecs_task_definition" "Task_Green" {
     name      = "service-storage"
     host_path = "/ecs/service-storage"
   }
-  lifecycle {
-    ignore_changes = []
-  }
+  tags = local.ECS_Task
 }

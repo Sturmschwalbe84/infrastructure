@@ -37,10 +37,10 @@ resource "aws_security_group" "VPC_Load_Security_Group" {
   tags = local.Load_Security_Group
 }
 
-# Creating a security group for the EC2 Instances
+# Creating a security group for the ECS Instances
 resource "aws_security_group" "VPC_Instances_Security_Group" {
   vpc_id = data.terraform_remote_state.VPC_State.outputs.Exam_VPC
-  # Creating a list of the EC2 open ports dynamically
+  # Creating a list of the ECS open ports dynamically
   dynamic "ingress" {
     for_each = var.Instances_Security_Group_Ports
     content {

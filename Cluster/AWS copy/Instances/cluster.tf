@@ -63,3 +63,4 @@ resource "aws_autoscaling_group" "Autoscaling_group" {
     aws_ecs_cluster.ECS_Cluster
   ]
 }
+
