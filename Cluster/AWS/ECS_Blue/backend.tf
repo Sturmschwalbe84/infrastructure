@@ -14,11 +14,20 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "VPC_State" {
+data "terraform_remote_state" "Instances_State" {
   backend = "s3"
   config = {
     bucket = "aws-exam-rainbow-gravity"
     key    = "cluster-state/Instances/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
+
+data "terraform_remote_state" "VPC_State" {
+  backend = "s3"
+  config = {
+    bucket = "aws-exam-rainbow-gravity"
+    key    = "cluster-state/VPC/terraform.tfstate"
     region = "eu-central-1"
   }
 }

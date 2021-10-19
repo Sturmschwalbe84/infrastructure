@@ -22,12 +22,20 @@ variable "Owner_Tag" {
   default = "Rainbow Gravity"
 }
 
+# Blue Auto scaling params
+variable "Blue_Autoscaling" {
+  type = map(number)
+  default = {
+    max_capacity = 6
+    min_capacity = 4
+  }
+}
+
 # Blue Container params
 variable "Blue_App" {
   type = map(number)
   default = {
     port   = 8080
-    amount = 4
     cpu    = 128
     memory = 128
   }

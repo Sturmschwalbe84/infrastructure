@@ -7,9 +7,8 @@
 # ECS Service
 resource "aws_ecs_service" "VPC_ECS_Service_Blue" {
   name            = "${local.ENV_Tag}-Blue"
-  cluster         = data.terraform_remote_state.VPC_State.outputs.ECS_Cluster
+  cluster         = data.terraform_remote_state.Instances_State.outputs.ECS_Cluster
   task_definition = aws_ecs_task_definition.Task_Blue.arn
-  desired_count   = var.Blue_App.amount
   launch_type     = "EC2"
   ordered_placement_strategy {
     type  = "spread"
@@ -20,7 +19,7 @@ resource "aws_ecs_service" "VPC_ECS_Service_Blue" {
     field = "instanceId"
   }
   load_balancer {
-    target_group_arn = data.terraform_remote_state.VPC_State.outputs.VPC_Blue_Target_Group
+    target_group_arn = data.terraform_remote_state.Instances_State.outputs.VPC_Blue_Target_Group
     container_name   = "${local.ENV_Tag}-Blue-Container"
     container_port   = var.Blue_App.port
   }

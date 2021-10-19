@@ -9,7 +9,6 @@ resource "aws_ecs_service" "VPC_ECS_Service_Green" {
   name            = "${local.ENV_Tag}-Green"
   cluster         = data.terraform_remote_state.Instances_State.outputs.ECS_Cluster
   task_definition = aws_ecs_task_definition.Task_Green.arn
-  desired_count   = var.Green_App.amount
   launch_type     = "EC2"
   ordered_placement_strategy {
     type  = "spread"

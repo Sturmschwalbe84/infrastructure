@@ -29,3 +29,4 @@ resource "aws_autoscaling_policy" "ECS_CPU_Policy" {
   cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.Autoscaling_group.name
 }
+
