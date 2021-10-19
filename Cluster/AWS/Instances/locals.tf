@@ -31,6 +31,9 @@ locals {
     }
   }
 }
+locals {
+  scaling_adjustment = var.Autoscaling.max_size - var.Autoscaling.desired_capacity
+}
 
 # Retrieving list of the available availability zones
 data "aws_availability_zones" "Available" {

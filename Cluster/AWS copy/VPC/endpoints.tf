@@ -70,7 +70,17 @@ resource "aws_vpc_endpoint" "ECR_API" {
     aws_security_group.VPC_ECS_Security_Group.id,
   ]
 }
+resource "aws_vpc_endpoint" "APP" {
+  vpc_id              = aws_vpc.Exam_VPC.id
+  service_name        = "com.amazonaws.${local.Current_region}.application-autoscaling"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = aws_subnet.VPC_Private_Subnet.*.id
+  private_dns_enabled = true
 
+  security_group_ids = [
+    aws_security_group.VPC_ECS_Security_Group.id,
+  ]
+}
 
 resource "aws_security_group" "VPC_ECS_Security_Group" {
   vpc_id = aws_vpc.Exam_VPC.id

@@ -44,7 +44,6 @@ variable "Region" {
 variable "Amount_of_Zones" {
   type    = number
   default = 2
-
   validation {
     condition     = var.Amount_of_Zones >= 2
     error_message = "Amount of avialability zones cannot be less than 2. ALB will not start."

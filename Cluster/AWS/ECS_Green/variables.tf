@@ -26,8 +26,13 @@ variable "Owner_Tag" {
 variable "Green_Autoscaling" {
   type = map(number)
   default = {
-    max_capacity = 6
-    min_capacity = 4
+    desired_count = 4
+    min_capacity  = 4
+    max_capacity  = 8
+  }
+  validation {
+    condition     = (var.Green_Autoscaling.desired_count >= var.Green_Autoscaling.min_capacity) && var.Green_Autoscaling.desired_count >= 1
+    error_message = "Desired count can't be less than min capacity."
   }
 }
 

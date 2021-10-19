@@ -8,6 +8,7 @@
 resource "aws_ecs_service" "VPC_ECS_Service_Green" {
   name            = "${local.ENV_Tag}-Green"
   cluster         = data.terraform_remote_state.Instances_State.outputs.ECS_Cluster
+  desired_count   = var.Green_Autoscaling.desired_count
   task_definition = aws_ecs_task_definition.Task_Green.arn
   launch_type     = "EC2"
   ordered_placement_strategy {
@@ -49,5 +50,7 @@ resource "aws_ecs_task_definition" "Task_Green" {
     name      = "service-storage"
     host_path = "/ecs/service-storage"
   }
-  tags = local.ECS_Task
+  execution_role_arn = data.terraform_remote_state.VPC_State.outputs.ECS_Agent_Role
+  task_role_arn      = data.terraform_remote_state.VPC_State.outputs.ECS_Agent_Role
+  tags               = local.ECS_Task
 }
