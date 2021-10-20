@@ -50,7 +50,5 @@ resource "aws_ecs_task_definition" "Task_Green" {
     name      = "service-storage"
     host_path = "/ecs/service-storage"
   }
-  execution_role_arn = data.terraform_remote_state.VPC_State.outputs.ECS_Agent_Role
-  task_role_arn      = data.terraform_remote_state.VPC_State.outputs.ECS_Agent_Role
-  tags               = local.ECS_Task
+  tags = local.ECS_Task
 }
